@@ -22,6 +22,12 @@ int main(){
         Inserir(&Arvore.raiz, NULL, novoItem);
 
         printf("\nCidade: %s\n", Cidades[i].nome);
+        printf("Eventos: \n");
+        for (int j = 0; j < MAX_EVENTOS; j++)
+        {
+            printf(" %s - Nota: %.1f\n", Cidades[i].eventos[j].nome, Cidades[i].eventos[j].avaliacao);
+        }
     }
+
     printf("arrasou diva");
 }

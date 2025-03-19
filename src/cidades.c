@@ -9,7 +9,6 @@
 #include "../include/eventos.h"
 
 void ArmazenaCidades(char *Array_cidade){
-    Array_cidade = malloc(50 * sizeof(char));
     char *Array2_cidades[] = {"Joao Monlevade", "Nova Era", "Ipatinga", "Bela Vista", "Rio Piracicaba", "Itabira", "Sao Domingos do Prata", "Alvinopolis",
     "Ouro Preto", "Coronel Fabriciano", "Barao de Cocais", "Timoteo", "Mariana", "Caete", "Raposos", "Santa Luzia", "Rio Casca", "Ponte Nova", 
     "Lagoa Santa", "Vespasiano", "Santana do Paraiso", "Nova Lima", "Belo Horizonte"};
@@ -18,7 +17,8 @@ void ArmazenaCidades(char *Array_cidade){
 
     //gera um numero aleatorio entre 0 e numCidades - 1.
     //esse num aleatorio pega a cidade correspondente ao seu indice e copia de "Array_cidade" para "Array2_cidades" !!
-    strcpy(Array_cidade, Array2_cidades[rand() % numCidades]); 
+    strncpy(Array_cidade, Array2_cidades[rand() % numCidades], 49);
+    Array_cidade[49] = '\0'; 
 }
 
 void preencherCidades(TCidades cidade[]){
@@ -38,9 +38,20 @@ void preencherCidades(TCidades cidade[]){
         }while(duplicado);
 
         
-        /*for (int j = 0; j < MAX_EVENTOS; j++) {
-            Armazenar_Eventos(cidade[i].eventos[j].nomeclatura);  
-            cidades[i].eventos[j].avaliacao = (rand() % 101) / 10.0; 
-        }*/
+        for (int j = 0; j < MAX_EVENTOS; j++) {
+            bool dupliEvento;
+            do{
+                dupliEvento = false;
+                ArmazenaEventos(cidade[i].eventos[j].nome);
+
+                for(int k = 0; k < j; k++){
+                    if (strcmp(cidade[i].eventos[j].nome, cidade[i].eventos[k].nome) == 0){
+                        dupliEvento = true;
+                        break;
+                    }
+                }
+            }while(dupliEvento);
+            cidade[i].eventos[j].avaliacao = (rand() % 101) / 10.0; 
+        }
     }
 }
