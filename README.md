@@ -2,5 +2,5 @@ Este é o trabalho "Roteiro Turísco Inteligente para Cidade e Eventos ulizando 
 
 Instruções:
 Ignore os arquivos .o e .d. **Não os delete.**
-Para compilar o programa, ctrl+shift+b
+Para compilar o programa, ctrl+shift+b.
 Para executar o programa, use ./main no terminal.
